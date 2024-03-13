@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-dogbcdv)@j-pj@$%c1s9x(5-kclw5c_bpq3)vv_&a_ui*r9!(q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'users',
-    
 ]
 
 MIDDLEWARE = [
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'recrutoBE.urls'
@@ -102,6 +103,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  # Add your frontend URL here
+    # Add more allowed origins if needed
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

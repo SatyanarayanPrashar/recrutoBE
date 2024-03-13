@@ -26,14 +26,25 @@ class AllUsers(APIView):
             raise NotFound(detail="User not found")
 
 class UserView(APIView):
-    def get(self, request, pk):
+    def get(self, request, g_token):
         try:
-            user = User.objects.get(pk=pk)
+            user = User.objects.get(g_token=g_token)
         except User.DoesNotExist:
             return Response({"error": "User does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = UserSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def put(self, request, g_token):
+        try:
+            user = User.objects.get(g_token=g_token)
+        except User.DoesNotExist:
+            return Response({"error": "User does not exist"}, status=status.HTTP_404_NOT_FOUND)
+        serializer = UserSerializer(user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
     def delete(self, request, pk):
         user = User.objects.get(pk=pk)
