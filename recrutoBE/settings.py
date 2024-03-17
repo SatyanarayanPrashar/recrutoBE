@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    "https://recruto.vercel.app",
+]
 
 # Application definition
 
@@ -102,11 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
-]
-
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # Add your frontend URL here
-    # Add more allowed origins if needed
 ]
 
 # Internationalization
