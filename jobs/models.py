@@ -12,3 +12,7 @@ class Jobs(models.Model):
 
     def __str__(self):
         return self.title
+    
+class JobApplicants(models.Model):
+    job_id = models.IntegerField()
+    applicant_ids = models.TextField()
